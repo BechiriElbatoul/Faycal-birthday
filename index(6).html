@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Faycal  🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Reenie+Beanie&family=Permanent+Marker&family=Special+Elite&family=Playfair+Display:ital@1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --warm: #e8dcc8;
+      --red: #c0392b;
+      --pink: #e8a0a0;
+      --tape: rgba(210,190,150,0.55);
+      --shadow: rgba(0,0,0,0.35);
+      --dark: #111010;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0d0b0b;
+      min-height: 100vh;
+      font-family: 'Caveat', cursive;
+      overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%23e8a0a0' opacity='0.8'/%3E%3C/svg%3E") 10 10, auto;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .4;
+    }
+
+    /* ── STARS & TRAIL CANVAS ── */
+    #stars-canvas {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 0;
+      opacity: .7;
+    }
+    #trail-canvas {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9998;
+    }
+
+    /* ══════════════════════════════
+       LANDING / ENVELOPE SECTION
+    ══════════════════════════════ */
+    #landing {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #landing::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, #2a1a1a 0%, #0d0b0b 70%);
+      z-index: 0;
+    }
+
+    .floating-hearts {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    }
+
+    .floating-hearts span {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: floatUp 6s ease-in infinite;
+    }
+    .floating-hearts span:nth-child(1)  { left: 10%; animation-delay: 0s;   font-size: 1rem; }
+    .floating-hearts span:nth-child(2)  { left: 25%; animation-delay: 1.2s; font-size: 0.8rem; }
+    .floating-hearts span:nth-child(3)  { left: 40%; animation-delay: 2.4s; }
+    .floating-hearts span:nth-child(4)  { left: 55%; animation-delay: 0.6s; font-size: 1.4rem; }
+    .floating-hearts span:nth-child(5)  { left: 70%; animation-delay: 1.8s; font-size: 0.9rem; }
+    .floating-hearts span:nth-child(6)  { left: 85%; animation-delay: 3s;   font-size: 1.1rem; }
+    .floating-hearts span:nth-child(7)  { left: 5%;  animation-delay: 3.6s; font-size: 0.7rem; }
+    .floating-hearts span:nth-child(8)  { left: 90%; animation-delay: 4.2s; }
+    .floating-hearts span:nth-child(9)  { left: 48%; animation-delay: 5s;   font-size: 0.8rem; }
+    .floating-hearts span:nth-child(10) { left: 32%; animation-delay: 2s;   font-size: 1.3rem; }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: .7; }
+      90%  { opacity: .4; }
+      100% { transform: translateY(-10vh) rotate(20deg); opacity: 0; }
+    }
+
+    .envelope-wrap {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 2rem;
+      animation: fadeDown .8s ease both;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .date-badge {
+      font-family: 'Special Elite', monospace;
+      color: #c9a96e;
+      font-size: 1rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      opacity: .8;
+    }
+
+    .envelope {
+      width: 320px; height: 220px;
+      position: relative;
+      cursor: pointer;
+      filter: drop-shadow(0 20px 60px rgba(200,100,100,.3));
+      transition: transform .3s ease;
+    }
+    .envelope:hover { transform: scale(1.04) rotate(-1deg); }
+
+    .env-body {
+      width: 100%; height: 100%;
+      background: var(--cream);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .env-body::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg, transparent, transparent 10px,
+        rgba(0,0,0,.03) 10px, rgba(0,0,0,.03) 11px
+      );
+    }
+
+    .env-flap {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 0; border-left: 160px solid transparent;
+      border-right: 160px solid transparent;
+      border-top: 110px solid #d4c5a9;
+      transform-origin: top;
+      transition: transform .6s cubic-bezier(.4,0,.2,1);
+      z-index: 3;
+    }
+
+    .envelope:hover .env-flap,
+    .envelope.open .env-flap {
+      transform: rotateX(180deg);
+    }
+
+    .env-bottom-left {
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 0;
+      border-bottom: 100px solid #c8b99a;
+      border-right: 160px solid transparent;
+    }
+    .env-bottom-right {
+      position: absolute; bottom: 0; right: 0;
+      width: 0; height: 0;
+      border-bottom: 100px solid #bfad90;
+      border-left: 160px solid transparent;
+    }
+
+    .env-seal {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px; height: 50px;
+      background: radial-gradient(circle, #c0392b, #8b1a1a);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,.3);
+      z-index: 4;
+      transition: transform .3s ease, opacity .3s ease;
+    }
+    .envelope:hover .env-seal { transform: translate(-50%,-50%) scale(0); opacity: 0; }
+
+    .env-label {
+      position: absolute; bottom: 40px;
+      left: 0; right: 0; text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem; color: #5a4030;
+      z-index: 2;
+    }
+
+    .open-hint {
+      font-family: 'Caveat', cursive;
+      color: rgba(255,255,255,.4);
+      font-size: 1rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.9} }
+
+    /* ══════════════════════════════
+       SCRAPBOOK PAGES
+    ══════════════════════════════ */
+    #scrapbook {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      animation: scrapbookOpen .8s ease both;
+    }
+
+    @keyframes scrapbookOpen {
+      from { opacity: 0; transform: scale(.97); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* PAGE BASE */
+    .page {
+      min-height: 100vh;
+      padding: 4rem 2rem;
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+
+    /* CORKBOARD bg for main scatter pages */
+    .page.cork {
+      background:
+        radial-gradient(ellipse at 20% 50%, #1a0f0f 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, #0f1a12 0%, transparent 50%),
+        #111010;
+    }
+
+    /* ── PAGE 1: BIRTHDAY HERO ── */
+    #page1 .scatter {
+      position: relative;
+      width: 100%; max-width: 900px;
+      height: 580px;
+    }
+
+    /* ── POLAROID ── */
+    .polaroid {
+      position: absolute;
+      background: #f8f4ed;
+      padding: 10px 10px 36px;
+      box-shadow: 4px 6px 24px rgba(0,0,0,.5), 0 1px 0 rgba(255,255,255,.1);
+      cursor: grab;
+      transition: box-shadow .3s ease, transform .2s ease;
+    }
+    .polaroid:hover {
+      box-shadow: 8px 12px 40px rgba(0,0,0,.7), 0 1px 0 rgba(255,255,255,.1);
+    }
+    .polaroid img, .polaroid .photo-placeholder {
+      display: block;
+      width: 100%; aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+    .polaroid .photo-placeholder {
+      background: #c8baa0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .polaroid .caption {
+      text-align: center;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem; color: #333;
+      margin-top: 6px;
+      line-height: 1.2;
+    }
+
+    /* ── TAPE ── */
+    .tape {
+      position: absolute;
+      height: 22px;
+      background: var(--tape);
+      border-radius: 2px;
+      z-index: 10;
+    }
+
+    /* ── STICKY NOTE ── */
+    .sticky {
+      position: absolute;
+      padding: 14px 16px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      box-shadow: 3px 4px 18px rgba(0,0,0,.4);
+    }
+    .sticky.yellow { background: #f6e87e; color: #333; }
+    .sticky.pink   { background: #f4b8c1; color: #4a1a2a; }
+    .sticky.blue   { background: #b8d8f4; color: #1a2a4a; }
+    .sticky.green  { background: #b8f4c8; color: #1a4a2a; }
+
+    /* ── LETTER CARD ── */
+    .letter-card {
+      position: absolute;
+      background: var(--cream);
+      padding: 24px 28px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem; line-height: 1.8;
+      color: #3a2a1a;
+      box-shadow: 4px 6px 30px rgba(0,0,0,.45);
+      max-width: 320px;
+    }
+    .letter-card h3 {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 1.8rem; color: #8b1a1a;
+      margin-bottom: 8px;
+    }
+
+    /* ── STICKER ── */
+    .sticker {
+      position: absolute;
+      font-size: 2rem;
+      filter: drop-shadow(2px 3px 6px rgba(0,0,0,.5));
+      cursor: default;
+      transition: transform .2s ease, filter .2s ease;
+      user-select: none;
+    }
+    .sticker:hover {
+      transform: scale(1.4) rotate(15deg) !important;
+      filter: drop-shadow(2px 3px 12px rgba(232,160,160,.8));
+    }
+
+    /* ── WASHI TAPE STRIP ── */
+    .washi {
+      position: absolute;
+      height: 18px;
+      opacity: .75;
+      border-radius: 2px;
+      z-index: 8;
+    }
+    .washi.red    { background: repeating-linear-gradient(90deg, #c0392b 0, #c0392b 8px, #e8a0a0 8px, #e8a0a0 16px); }
+    .washi.floral { background: repeating-linear-gradient(90deg, #f4b8c1 0, #f4b8c1 6px, #fff 6px, #fff 10px, #b8d8f4 10px, #b8d8f4 16px); }
+    .washi.kraft  { background: repeating-linear-gradient(90deg, #c8a96e 0, #c8a96e 8px, #e8d5a0 8px, #e8d5a0 14px); }
+
+    /* ── FILM STRIP ── */
+    .filmstrip {
+      display: flex;
+      background: #111;
+      padding: 8px 4px;
+      gap: 4px;
+      border-radius: 2px;
+      box-shadow: 4px 4px 20px rgba(0,0,0,.7);
+    }
+    .film-hole-row {
+      display: flex; flex-direction: column;
+      justify-content: space-between; padding: 2px 0;
+    }
+    .film-hole {
+      width: 8px; height: 8px;
+      background: #333; border-radius: 1px; margin: 3px 0;
+    }
+    .film-frame {
+      width: 70px; height: 70px;
+      background: #2a2a2a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .film-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── REASONS LIST ── */
+    .reasons-card {
+      position: absolute;
+      background: var(--cream);
+      padding: 20px 22px;
+      box-shadow: 4px 6px 30px rgba(0,0,0,.5);
+      max-width: 250px;
+    }
+    .reasons-card h3 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.1rem; color: #c0392b;
+      margin-bottom: 10px;
+    }
+    .reasons-card ol {
+      padding-left: 18px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem;
+      line-height: 1.7; color: #3a2a1a;
+    }
+
+    /* ── POSTCARD ── */
+    .postcard {
+      position: absolute;
+      background: #f5ead8;
+      border: 1px solid #c8b080;
+      box-shadow: 4px 6px 24px rgba(0,0,0,.5);
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+    }
+    .postcard .pc-left {
+      padding: 16px;
+      font-family: 'Caveat', cursive;
+      font-size: 1rem; line-height: 1.6; color: #3a2a1a;
+    }
+    .postcard .pc-divider { background: #c8b080; }
+    .postcard .pc-right { padding: 14px; }
+    .postcard .pc-stamp {
+      width: 50px; height: 60px;
+      background: linear-gradient(135deg, #c0392b, #8b1a1a);
+      border: 2px solid #a03020;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-left: auto; margin-bottom: 8px;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.2);
+    }
+    .postcard .pc-to {
+      font-family: 'Special Elite', monospace;
+      font-size: .8rem; color: #5a4030; line-height: 1.6;
+    }
+
+    /* ── CD ELEMENT ── */
+    .cd {
+      position: absolute;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: conic-gradient(
+        #f0e0d0, #c8d0e0, #d0f0d0, #f0d0e0, #e0e0c0, #c0d0f0, #f0e0d0
+      );
+      box-shadow: 4px 4px 20px rgba(0,0,0,.6), inset 0 0 20px rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      animation: spin 8s linear infinite;
+    }
+    .cd::before {
+      content: '';
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #1a1a1a;
+    }
+    .cd-label {
+      position: absolute;
+      font-family: 'Caveat', cursive;
+      font-size: .6rem; color: #333;
+      white-space: nowrap;
+      transform: rotate(-30deg);
+      top: 30px; right: -10px;
+    }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* ── LETTER TILES ── */
+    .letter-tiles {
+      display: flex; gap: 4px;
+      position: absolute;
+    }
+    .tile {
+      width: 28px; height: 28px;
+      background: #f5f0e0;
+      border: 1px solid #c8b080;
+      border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Special Elite', monospace;
+      font-size: 1rem; font-weight: bold; color: #3a2a1a;
+      box-shadow: 1px 2px 4px rgba(0,0,0,.3);
+      transition: transform .15s ease;
+    }
+    .tile:hover { transform: translateY(-4px) scale(1.15); }
+
+    /* ── STREET SIGN ── */
+    .street-sign {
+      position: absolute;
+      background: #1a6abd;
+      color: white;
+      font-family: 'Special Elite', monospace;
+      font-size: .75rem;
+      letter-spacing: .15em;
+      padding: 5px 12px;
+      border: 2px solid white;
+      border-radius: 3px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,.5);
+    }
+
+    /* ── PHOTO PLACEHOLDER ── */
+    .photo-ph {
+      background: linear-gradient(135deg, #c8baa0, #a09080);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px; color: #5a4030;
+      font-family: 'Caveat', cursive; font-size: .85rem;
+      text-align: center; padding: 8px;
+    }
+    .photo-ph .icon { font-size: 2rem; }
+
+    /* ══════════════════════
+       ANIMATIONS: REVEAL
+       FIX: use !important to override any conflicting transforms
+    ══════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px) rotate(var(--rot, 0deg)) !important;
+      transition: opacity .65s ease, transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) rotate(var(--rot, 0deg)) !important;
+    }
+
+    /* ══════════════════════
+       MUSIC PLAYER
+    ══════════════════════ */
+    .music-bar {
+      position: fixed; bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(20,10,10,.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(200,100,100,.35);
+      border-radius: 50px;
+      padding: 10px 20px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 4px 30px rgba(0,0,0,.6);
+      animation: musicBounce 1.2s ease 1s both;
+    }
+    @keyframes musicBounce {
+      0%   { opacity:0; transform: translateX(-50%) translateY(60px); }
+      60%  { transform: translateX(-50%) translateY(-8px); }
+      80%  { transform: translateX(-50%) translateY(4px); }
+      100% { opacity:1; transform: translateX(-50%) translateY(0); }
+    }
+    .music-bar .song-info {
+      font-family: 'Caveat', cursive;
+      color: rgba(255,255,255,.8);
+      font-size: 1rem;
+    }
+    .music-bar .song-title { color: #f4b8c1; font-size: 1.1rem; }
+    .music-bar .vinyl {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: conic-gradient(#222, #444, #222, #555, #222);
+      animation: spin 3s linear infinite;
+      animation-play-state: paused;
+      border: 3px solid #555;
+      position: relative;
+    }
+    .music-bar .vinyl::after {
+      content: '';
+      position: absolute; inset: 30%;
+      background: #c0392b; border-radius: 50%;
+    }
+    .music-bar.playing .vinyl { animation-play-state: running; }
+    .play-btn {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c0392b, #8b1a1a);
+      border: none; cursor: pointer;
+      color: white; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s;
+    }
+    .play-btn:hover { transform: scale(1.1); }
+
+    /* ══════════════════════
+       PAGE 2: LETTER
+    ══════════════════════ */
+    #page2 {
+      background: #0e0c0c;
+      justify-content: center;
+    }
+    .big-letter {
+      max-width: 680px; width: 90%;
+      background: var(--cream);
+      padding: 48px 56px;
+      position: relative;
+      box-shadow: 0 20px 80px rgba(0,0,0,.7);
+    }
+    .big-letter::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        transparent, transparent 27px, rgba(0,0,0,.06) 27px, rgba(0,0,0,.06) 28px
+      );
+      pointer-events: none;
+    }
+    .big-letter .red-margin {
+      position: absolute; left: 72px; top: 0; bottom: 0;
+      width: 1px; background: rgba(200,80,80,.4);
+    }
+    .big-letter .letter-date {
+      font-family: 'Caveat', cursive; font-size: 1rem;
+      color: #888; text-align: right; margin-bottom: 24px;
+    }
+    .big-letter .letter-heading {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 2.8rem; color: #8b1a1a;
+      margin-bottom: 20px;
+      min-height: 3.2rem;
+    }
+    /* typewriter cursor */
+    .letter-heading::after {
+      content: '|';
+      opacity: 1;
+      animation: blink .7s steps(1) infinite;
+    }
+    .letter-heading.typed::after { display: none; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .big-letter p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.2rem; line-height: 1.9;
+      color: #3a2a1a; margin-bottom: 16px;
+    }
+    .big-letter .sign-off {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 2rem; color: #8b1a1a; margin-top: 24px;
+    }
+    .big-letter .stamp-corner {
+      position: absolute; top: 20px; right: 20px;
+      width: 60px; height: 72px;
+      background: linear-gradient(135deg, #c0392b, #e74c3c);
+      border: 2px solid #a03020;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,.15);
+    }
+    .big-letter .tape-top {
+      position: absolute; top: -10px; left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 120px; height: 22px;
+      background: var(--tape);
+    }
+
+    /* ══════════════════════
+       PAGE 3: REASONS
+    ══════════════════════ */
+    #page3 {
+      background: radial-gradient(ellipse at 30% 40%, #1a0d0d, #0d0b0b);
+      flex-direction: column; gap: 3rem;
+      padding: 6rem 2rem;
+    }
+    #page3 .section-title {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 2.2rem; color: var(--cream);
+      text-align: center;
+    }
+    #page3 .section-title span { color: #e8a0a0; }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; max-width: 900px; width: 100%;
+    }
+    .reason-item {
+      background: var(--cream);
+      padding: 18px 20px;
+      position: relative;
+      box-shadow: 3px 4px 20px rgba(0,0,0,.5);
+      /* NOTE: no base transform here — handled by .reveal / .reveal.visible */
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .reason-item:hover {
+      transform: rotate(0deg) scale(1.04) !important;
+      z-index: 10;
+      box-shadow: 6px 8px 30px rgba(0,0,0,.6);
+    }
+    .reason-item .num {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 2.5rem; color: rgba(200,80,80,.2);
+      position: absolute; top: 8px; right: 12px;
+    }
+    .reason-item p {
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem; line-height: 1.6; color: #3a2a1a;
+    }
+    .reason-item .tape-r {
+      position: absolute; top: -10px; left: 50%;
+      transform: translateX(-50%);
+      width: 60px; height: 18px;
+      background: var(--tape);
+    }
+
+    /* ══════════════════════
+       PAGE 4: MEMORIES / GALLERY
+    ══════════════════════ */
+    #page4 {
+      background: #0d0b0b;
+      flex-direction: column; gap: 3rem;
+      padding: 6rem 2rem;
+    }
+    #page4 .section-title {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 2.2rem; color: var(--cream); text-align: center;
+    }
+    #page4 .section-title span { color: #e8a0a0; }
+
+    .gallery-scatter {
+      width: 100%; max-width: 920px;
+    }
+    .gallery-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .gallery-row .polaroid {
+      position: relative !important;
+      display: block;
+      flex: 0 0 auto;
+    }
+    .gallery-bottom {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* ══════════════════════
+       PAGE 5: COUNTDOWN
+    ══════════════════════ */
+    #page5 {
+      background: radial-gradient(ellipse at 50% 50%, #1a0808, #0d0b0b);
+      flex-direction: column; gap: 2.5rem;
+    }
+    #page5 .section-title {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 3rem; color: var(--cream); text-align: center;
+    }
+    .countdown-wrap {
+      display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;
+    }
+    .count-box {
+      background: var(--cream);
+      width: 110px; text-align: center;
+      padding: 16px 12px 12px;
+      box-shadow: 4px 6px 24px rgba(0,0,0,.5);
+      transform: rotate(var(--rot, 0deg));
+    }
+    .count-box .num-big {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 3rem; color: #c0392b;
+      line-height: 1;
+    }
+    .count-box .label {
+      font-family: 'Special Elite', monospace;
+      font-size: .75rem; color: #888;
+      letter-spacing: .1em; text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .bday-msg {
+      font-family: 'Reenie Beanie', cursive;
+      font-size: 2rem; color: #f4b8c1;
+      text-align: center;
+    }
+
+    /* ══════════════════════
+       PAGE 6: FINAL
+    ══════════════════════ */
+    #page6 {
+      background: #0d0b0b;
+      flex-direction: column; gap: 1.5rem;
+    }
+    .final-polaroid {
+      position: relative;
+      background: #f8f4ed;
+      padding: 14px 14px 50px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.8);
+      max-width: 340px; width: 90%;
+    }
+    .final-polaroid .photo-ph {
+      width: 100%; height: 280px;
+    }
+    .final-polaroid .big-caption {
+      text-align: center; margin-top: 8px;
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem; color: #3a2a1a;
+    }
+    .final-confetti { font-size: 2rem; letter-spacing: .5rem; animation: pulse 1.8s ease infinite; }
+
+    /* ══════════════════════
+       CONFETTI CANVAS
+    ══════════════════════ */
+    #confetti-canvas {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 999;
+      display: none;
+    }
+
+    /* ══════════════════════
+       RESPONSIVE
+    ══════════════════════ */
+    @media (max-width: 600px) {
+      #page1 .scatter, .gallery-scatter { height: auto; min-height: 700px; }
+      .big-letter { padding: 36px 28px; }
+      .big-letter .red-margin { left: 0; }
+      .count-box { width: 80px; }
+      .count-box .num-big { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<canvas id="confetti-canvas"></canvas>
+<canvas id="trail-canvas"></canvas>
+
+<!-- ══════════════════════════
+     LANDING
+══════════════════════════ -->
+<section id="landing">
+  <div class="floating-hearts">
+    <span>🤍</span><span>💗</span><span>🌹</span><span>💌</span>
+    <span>🤍</span><span>💗</span><span>✨</span><span>💖</span>
+    <span>🌸</span><span>💝</span>
+  </div>
+
+  <div class="envelope-wrap">
+    <div class="date-badge">4 Avril 2002 — Happy Birthday 🎂</div>
+
+    <div class="envelope" id="envelope" onclick="openSite()">
+      <div class="env-body">
+        <div class="env-bottom-left"></div>
+        <div class="env-bottom-right"></div>
+        <div class="env-label">pour toi, Faycal ♥</div>
+      </div>
+      <div class="env-flap"></div>
+      <div class="env-seal">💌</div>
+    </div>
+
+    <p class="open-hint">clique pour ouvrir ✨</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════
+     SCRAPBOOK
+══════════════════════════ -->
+<div id="scrapbook">
+
+  <!-- PAGE 1: HERO SCATTER -->
+  <section class="page cork" id="page1">
+    <div class="scatter">
+
+      <!-- big polaroid center -->
+      <div class="polaroid reveal" style="width:220px; top:80px; left:calc(50% - 110px); --rot:-3deg; z-index:5;">
+        <div class="photo-placeholder photo-ph" style="height:200px;">
+          <span class="icon">📸</span>
+          <span>votre photo ici</span>
+        </div>
+        <div class="caption">nous deux 🥹</div>
+      </div>
+
+      <!-- tape on polaroid -->
+      <div class="tape reveal" style="width:80px; top:72px; left:calc(50% - 40px); --rot:-15deg;"></div>
+
+      <!-- street sign — top left, away from sticky -->
+      <div class="street-sign reveal" style="top:16px; left:16px; --rot:-2deg;">LOVERS LANE 💙</div>
+
+      <!-- cd — center-left, below street sign -->
+      <div style="position:absolute; top:60px; left:20px;">
+        <div class="cd reveal" style="--rot:0deg;"></div>
+        <div style="position:absolute;top:20px;left:110px;font-family:'Caveat',cursive;color:#f4b8c1;font-size:.8rem;transform:rotate(10deg);white-space:nowrap;">Tu Vas Me Manquer<br>— Maître Gims</div>
+      </div>
+
+      <!-- sticky: happy bday — top right, clear of street sign -->
+      <div class="sticky yellow reveal" style="width:190px; top:10px; right:16px; --rot:4deg;">
+        <strong style="font-size:1.3rem;">Joyeux Anniversaire</strong><br>Faycal! 🎂🎉
+      </div>
+
+      <!-- letter tiles: name -->
+      <div class="letter-tiles reveal" style="bottom:120px; left:50%; transform:translateX(-50%); --rot:0deg;">
+        <div class="tile">F</div><div class="tile">A</div><div class="tile">C</div>
+        <div class="tile">A</div><div class="tile">Y</div><div class="tile">L</div>
+      </div>
+
+      <!-- washi strips -->
+      <div class="washi red reveal" style="width:160px; bottom:200px; left:20px; --rot:-8deg;"></div>
+      <div class="washi floral reveal" style="width:130px; top:200px; right:16px; --rot:5deg;"></div>
+
+      <!-- stickers -->
+      <div class="sticker reveal" style="bottom:230px; right:60px; --rot:10deg;">🍒</div>
+      <div class="sticker reveal" style="bottom:160px; left:30px; --rot:-5deg;">🌹</div>
+      <div class="sticker reveal" style="top:180px; left:calc(50% + 60px); --rot:0deg;">🩹</div>
+      <div class="sticker reveal" style="bottom:100px; right:30px; --rot:-3deg;">🎂</div>
+      <div class="sticker reveal" style="top:160px; right:130px; --rot:15deg;">💌</div>
+
+      <!-- small second polaroid -->
+      <div class="polaroid reveal" style="width:150px; bottom:40px; right:80px; --rot:6deg; z-index:4;">
+        <div class="photo-placeholder photo-ph" style="height:130px;">
+          <span class="icon">📸</span>
+        </div>
+        <div class="caption">souvenir 💕</div>
+      </div>
+
+      <!-- postcard -->
+      <div class="postcard reveal" style="width:280px; bottom:30px; left:20px; --rot:-2deg;">
+        <div class="pc-left">
+          <div style="font-family:'Special Elite',monospace;font-size:.7rem;color:#888;margin-bottom:8px;letter-spacing:.1em;">AIR MAIL — PAR AVION ✈️</div>
+          <p style="font-family:'Caveat',cursive;font-size:1rem;color:#5a4030;line-height:1.5;">
+            Dans ce monde,<br>c'est juste nous. 🥹
+          </p>
+        </div>
+        <div class="pc-divider"></div>
+        <div class="pc-right">
+          <div class="pc-stamp">💌</div>
+          <div class="pc-to">À: Faycal<br>De: Chiraz ♥</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE 2: LOVE LETTER -->
+  <section class="page" id="page2">
+    <div class="big-letter reveal" style="--rot:0deg;">
+      <div class="tape-top"></div>
+      <div class="stamp-corner">💌</div>
+      <div class="red-margin"></div>
+      <div class="letter-date">4 Avril 2002 — ton jour préféré 🎂</div>
+      <div class="letter-heading" id="letter-heading"></div>
+      <p>
+        Aujourd'hui c'est ton anniversaire et je voulais que tu saches à quel point tu comptes pour moi. Chaque jour passé avec toi est un cadeau que je ne prends jamais pour acquis.
+      </p>
+      <p>
+        Tu m'as appris ce que c'est d'être vraiment aimé, de rire aux larmes, et de trouver le bonheur dans les petits moments. Avec toi, même les journées ordinaires deviennent des souvenirs.
+      </p>
+      <p>
+        Je suis tellement fière de la personne que tu es — de ton cœur immense, de ta force, de tout ce qui te rend toi. Ce site est ma façon de te dire : tu mérites tout le bonheur du monde.
+      </p>
+      <p>
+        Joyeux anniversaire mon amour. Que cette nouvelle année de ta vie soit remplie de joie, de rires et de tout ce dont tu as rêvé. ✨
+      </p>
+      <div class="sign-off">Avec tout mon amour, Chiraz 💗</div>
+      <div style="position:absolute;bottom:16px;right:20px;font-size:1.5rem;">🌹🌹🌹</div>
+    </div>
+  </section>
+
+  <!-- PAGE 3: REASONS I LOVE YOU -->
+  <section class="page" id="page3">
+    <h2 class="section-title">raisons pour lesquelles <span>je t'aime</span> 🥹</h2>
+    <div class="reasons-grid">
+      <div class="reason-item reveal" style="--rot:-3deg;">
+        <div class="tape-r"></div>
+        <div class="num">01</div>
+        <p>Ton sourire qui illumine toute la pièce ✨</p>
+      </div>
+      <div class="reason-item reveal" style="--rot:2deg;">
+        <div class="tape-r"></div>
+        <div class="num">02</div>
+        <p>Ta façon de me faire rire même dans les moments difficiles 😂</p>
+      </div>
+      <div class="reason-item reveal" style="--rot:-2deg;">
+        <div class="tape-r"></div>
+        <div class="num">03</div>
+        <p>Ton cœur immense et ta générosité sans limites 💗</p>
+      </div>
+      <div class="reason-item reveal" style="--rot:3deg;">
+        <div class="tape-r"></div>
+        <div class="num">04</div>
+        <p>Comment tu me fais me sentir en sécurité et aimée 🤍</p>
+      </div>
+      <div class="reason-item reveal" style="--rot:-1deg;">
+        <div class="tape-r"></div>
+        <div class="num">05</div>
+        <p>Ta passion et ta détermination pour tout ce que tu fais 🔥</p>
+      </div>
+      <div class="reason-item reveal" style="--rot:2.5deg;">
+        <div class="tape-r"></div>
+        <div class="num">06</div>
+        <p>Les petits moments du quotidien que tu rends magiques 🌙</p>
+      </div>
+      <div class="reason-item reveal" style="--rot:-2.5deg;">
+        <div class="tape-r"></div>
+        <div class="num">07</div>
+        <p>Ta façon d'être toujours là pour moi, sans conditions 💌</p>
+      </div>
+      <div class="reason-item reveal" style="--rot:1.5deg;">
+        <div class="tape-r"></div>
+        <div class="num">08</div>
+        <p>Simplement parce que tu es toi — et ça suffit 🌹</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 4: MEMORIES GALLERY -->
+  <section class="page" id="page4">
+    <h2 class="section-title">nos <span>souvenirs</span> 📸</h2>
+    <div class="gallery-scatter">
+
+      <!-- Row 1: three polaroids side by side -->
+      <div class="gallery-row">
+        <div class="polaroid reveal" style="width:200px; --rot:-4deg; z-index:3; margin-top:12px;">
+          <div class="photo-placeholder photo-ph" style="height:180px;"><span class="icon">📸</span><span>photo 1</span></div>
+          <div class="caption">mon préféré 🥹</div>
+        </div>
+
+        <div class="polaroid reveal" style="width:200px; --rot:3deg; z-index:4; margin-top:0;">
+          <div class="photo-placeholder photo-ph" style="height:180px;"><span class="icon">📸</span><span>photo 2</span></div>
+          <div class="caption">ce jour-là 💕</div>
+        </div>
+
+        <div class="polaroid reveal" style="width:200px; --rot:-2deg; z-index:3; margin-top:18px;">
+          <div class="photo-placeholder photo-ph" style="height:180px;"><span class="icon">📸</span><span>photo 3</span></div>
+          <div class="caption">toujours ensemble 🌹</div>
+        </div>
+      </div>
+
+      <!-- Row 2: filmstrip + stickies -->
+      <div class="gallery-bottom">
+        <div class="filmstrip reveal" style="--rot:-1deg; flex-shrink:0;">
+          <div class="film-hole-row">
+            <div class="film-hole"></div><div class="film-hole"></div>
+            <div class="film-hole"></div><div class="film-hole"></div>
+          </div>
+          <div class="film-frame"><div style="color:#aaa;font-size:1.5rem;">📸</div></div>
+          <div class="film-frame"><div style="color:#aaa;font-size:1.5rem;">📸</div></div>
+          <div class="film-frame"><div style="color:#aaa;font-size:1.5rem;">📸</div></div>
+          <div class="film-hole-row">
+            <div class="film-hole"></div><div class="film-hole"></div>
+            <div class="film-hole"></div><div class="film-hole"></div>
+          </div>
+        </div>
+
+        <div class="sticky pink reveal" style="position:relative; width:220px; --rot:-3deg; margin-top:10px;">
+          <strong>"Meeting you was a nice accident"</strong><br>— le meilleur hasard de ma vie 💗
+        </div>
+
+        <div class="sticky yellow reveal" style="position:relative; width:200px; --rot:2deg; margin-top:24px;">
+          "In this world, it's just us" 🌍
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PAGE 5: COUNTDOWN -->
+  <section class="page" id="page5">
+    <h2 class="section-title">il a <span style="color:#e8a0a0;" id="age-display">??</span> ans aujourd'hui 🎂</h2>
+    <div class="countdown-wrap" id="countdown-wrap">
+      <div class="count-box" style="--rot:-3deg;">
+        <div class="num-big" id="cd-d">00</div>
+        <div class="label">jours</div>
+      </div>
+      <div class="count-box" style="--rot:2deg;">
+        <div class="num-big" id="cd-h">00</div>
+        <div class="label">heures</div>
+      </div>
+      <div class="count-box" style="--rot:-1deg;">
+        <div class="num-big" id="cd-m">00</div>
+        <div class="label">minutes</div>
+      </div>
+      <div class="count-box" style="--rot:3deg;">
+        <div class="num-big" id="cd-s">00</div>
+        <div class="label">secondes</div>
+      </div>
+    </div>
+    <p class="bday-msg" id="bday-msg-txt" style="display:none;">
+      🎉 C'est aujourd'hui ! Joyeux anniversaire Faycal ! 🎂🥳
+    </p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+      <div class="sticky pink reveal" style="position:relative;--rot:-2deg;width:200px;">
+        🎂 4 Avril 2002<br>le plus beau jour de l'univers
+      </div>
+      <div class="sticky blue reveal" style="position:relative;--rot:2deg;width:200px;">
+        ✨ chaque année tu deviens encore plus toi
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 6: FINAL -->
+  <section class="page" id="page6">
+    <div style="text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+      <div class="final-confetti">🎂🥳🎉🌹💌</div>
+      <div class="final-polaroid reveal" style="--rot:0deg;">
+        <div class="photo-placeholder photo-ph" style="height:280px;">
+          <span class="icon">📸</span>
+          <span>votre plus belle photo ensemble</span>
+        </div>
+        <div class="big-caption">Faycal & Chiraz 💗</div>
+      </div>
+      <div style="font-family:'Reenie Beanie',cursive;font-size:2.4rem;color:var(--cream);text-align:center;max-width:500px;line-height:1.4;">
+        "Voici à encore plus d'années d'amour, de rires et de folles aventures ensemble" 🥂
+      </div>
+      <div style="font-family:'Caveat',cursive;color:#e8a0a0;font-size:1.2rem;">
+        — avec tout mon amour, Chiraz ♥
+      </div>
+      <button onclick="launchConfetti()" style="
+        margin-top:1rem;
+        font-family:'Caveat',cursive; font-size:1.3rem;
+        background:linear-gradient(135deg,#c0392b,#e74c3c);
+        color:white; border:none; padding:14px 32px;
+        border-radius:50px; cursor:pointer;
+        box-shadow:0 4px 20px rgba(200,50,50,.5);
+        transition:transform .2s;
+      " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        🎉 fête-le !
+      </button>
+    </div>
+  </section>
+
+</div><!-- end scrapbook -->
+
+<!-- MUSIC BAR -->
+<div class="music-bar" id="music-bar" style="display:none;">
+  <div class="vinyl" id="vinyl"></div>
+  <div class="song-info">
+    <div class="song-title">Tu Vas Me Manquer</div>
+    <div>Maître Gims 🎵</div>
+  </div>
+  <button class="play-btn" id="play-btn" onclick="toggleMusic()" title="Play/Pause">▶</button>
+</div>
+
+<script>
+  /* ══════════════════════
+     OPEN ENVELOPE
+  ══════════════════════ */
+  function openSite() {
+    const env = document.getElementById('envelope');
+    env.classList.add('open');
+    setTimeout(() => {
+      document.getElementById('landing').style.display = 'none';
+      const sb = document.getElementById('scrapbook');
+      sb.style.display = 'flex';
+      document.getElementById('music-bar').style.display = 'flex';
+      // small delay so layout is calculated before observer fires
+      requestAnimationFrame(() => {
+        initScrollReveal();
+        initCountdown();
+        // reveal page1 elements with stagger
+        document.querySelectorAll('#page1 .reveal').forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), 200 + i * 90);
+        });
+      });
+    }, 700);
+  }
+
+  /* ══════════════════════
+     SCROLL REVEAL
+  ══════════════════════ */
+  function initScrollReveal() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const els = e.target.querySelectorAll('.reveal:not(.visible)');
+          els.forEach((el, i) => {
+            setTimeout(() => el.classList.add('visible'), i * 110);
+          });
+          // Typewriter for letter heading when page2 appears
+          if (e.target.id === 'page2') {
+            setTimeout(() => typewriterEffect('letter-heading', 'Mon Faycal,'), 300);
+          }
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.page').forEach(p => observer.observe(p));
+  }
+
+  /* ══════════════════════
+     TYPEWRITER EFFECT
+  ══════════════════════ */
+  function typewriterEffect(elId, text, speed = 70) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+      el.textContent += text[i];
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        el.classList.add('typed'); // remove cursor blink
+      }
+    }, speed);
+  }
+
+  /* ══════════════════════
+     COUNTDOWN
+  ══════════════════════ */
+  function initCountdown() {
+    const bday = new Date('2002-04-04');
+    const now = new Date();
+    const age = now.getFullYear() - bday.getFullYear() -
+      (now < new Date(now.getFullYear(), bday.getMonth(), bday.getDate()) ? 1 : 0);
+    document.getElementById('age-display').textContent = age;
+
+    function tick() {
+      const now = new Date();
+      const next = new Date(now.getFullYear(), 3, 4); // April = 3 (0-indexed)
+      if (now > next) next.setFullYear(next.getFullYear() + 1);
+      const diff = next - now;
+
+      const isToday = now.getMonth() === 3 && now.getDate() === 4;
+      if (isToday) {
+        document.getElementById('countdown-wrap').style.display = 'none';
+        document.getElementById('bday-msg-txt').style.display = 'block';
+        launchConfetti();
+        return;
+      }
+
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+
+      document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+      document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+      document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  /* ══════════════════════
+     MUSIC — YouTube IFrame API
+     Video: KA3Q1duzwaE
+     "Tu Vas Me Manquer" — Maître Gims
+  ══════════════════════ */
+  let ytPlayer = null;
+  let ytReady  = false;
+  let ytPlaying = false;
+
+  // Load YouTube IFrame API script once
+  function loadYTApi() {
+    if (document.getElementById('yt-api-script')) return;
+    const s = document.createElement('script');
+    s.id  = 'yt-api-script';
+    s.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(s);
+  }
+
+  // Called automatically by YouTube API when ready
+  window.onYouTubeIframeAPIReady = function() {
+    // Create off-screen player div
+    const div = document.createElement('div');
+    div.id = 'yt-player-div';
+    div.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:320px;height:180px;';
+    document.body.appendChild(div);
+
+    ytPlayer = new YT.Player('yt-player-div', {
+      videoId: 'KA3Q1duzwaE',
+      playerVars: { autoplay: 1, loop: 1, playlist: 'KA3Q1duzwaE', controls: 0, rel: 0 },
+      events: {
+        onReady: (e) => {
+          ytReady = true;
+          e.target.playVideo();
+          ytPlaying = true;
+          document.getElementById('play-btn').textContent = '⏸';
+          document.getElementById('music-bar').classList.add('playing');
+        }
+      }
+    });
+  };
+
+  function toggleMusic() {
+    const btn = document.getElementById('play-btn');
+    const bar = document.getElementById('music-bar');
+
+    if (!ytPlayer) {
+      // First click — load API (satisfies user-gesture requirement)
+      loadYTApi();
+      // onYouTubeIframeAPIReady will auto-play and update UI
+      return;
+    }
+
+    if (!ytReady) return;
+
+    ytPlaying = !ytPlaying;
+    if (ytPlaying) {
+      ytPlayer.playVideo();
+      bar.classList.add('playing');
+      btn.textContent = '⏸';
+    } else {
+      ytPlayer.pauseVideo();
+      bar.classList.remove('playing');
+      btn.textContent = '▶';
+    }
+  }
+
+  /* ══════════════════════
+     CONFETTI
+  ══════════════════════ */
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    canvas.style.display = 'block';
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const pieces = Array.from({length: 150}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 8 + 4,
+      d: Math.random() * 120 + 60,
+      color: ['#c0392b','#e8a0a0','#f6e87e','#f4b8c1','#b8d8f4','#fff','#c8a96e'][Math.floor(Math.random()*7)],
+      tilt: Math.random() * 10 - 5,
+      tiltAngle: 0,
+      tiltAngleIncrement: Math.random() * .07 + .05
+    }));
+
+    let frame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.tiltAngle += p.tiltAngleIncrement;
+        p.y += (Math.cos(p.d) + 2.5);
+        p.x += Math.sin(frame / 40);
+        p.tilt = Math.sin(p.tiltAngle) * 12;
+        ctx.beginPath();
+        ctx.lineWidth = p.r / 2;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+        ctx.stroke();
+      });
+      frame++;
+      if (frame < 350) requestAnimationFrame(draw);
+      else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display='none'; }
+    }
+    draw();
+  }
+
+  /* ══════════════════════
+     DRAG POLAROIDS
+  ══════════════════════ */
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.polaroid').forEach(el => {
+      let dragging = false, ox = 0, oy = 0;
+      el.addEventListener('mousedown', e => {
+        dragging = true;
+        el.style.zIndex = 100;
+        ox = e.clientX - el.getBoundingClientRect().left;
+        oy = e.clientY - el.getBoundingClientRect().top;
+        e.preventDefault();
+      });
+      document.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        el.style.position = 'fixed';
+        el.style.left = (e.clientX - ox) + 'px';
+        el.style.top  = (e.clientY - oy) + 'px';
+        el.style.transform = 'rotate(-2deg) scale(1.05)';
+      });
+      document.addEventListener('mouseup', () => {
+        dragging = false;
+        el.style.transform = '';
+      });
+    });
+
+    /* ══════════════════════
+       TWINKLING STARS BACKGROUND
+    ══════════════════════ */
+    const starsCanvas = document.getElementById('stars-canvas');
+    const sCtx = starsCanvas.getContext('2d');
+
+    function resizeStars() {
+      starsCanvas.width  = window.innerWidth;
+      starsCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeStars);
+    resizeStars();
+
+    const stars = Array.from({ length: 160 }, () => ({
+      x: Math.random() * starsCanvas.width,
+      y: Math.random() * starsCanvas.height,
+      r: Math.random() * 1.4 + 0.2,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.018 + 0.006
+    }));
+
+    function drawStars() {
+      sCtx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+      stars.forEach(s => {
+        s.phase += s.speed;
+        const alpha = (Math.sin(s.phase) + 1) / 2 * 0.55 + 0.08;
+        sCtx.beginPath();
+        sCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        sCtx.fillStyle = `rgba(255, 230, 210, ${alpha})`;
+        sCtx.fill();
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    /* ══════════════════════
+       CURSOR SPARKLE TRAIL
+    ══════════════════════ */
+    const trailCanvas = document.getElementById('trail-canvas');
+    const tCtx = trailCanvas.getContext('2d');
+    const trailParticles = [];
+    const TRAIL_EMOJIS = ['💗','✨','🌸','💫','🌹','💕','⭐'];
+    let lastTrailTime = 0;
+
+    function resizeTrail() {
+      trailCanvas.width  = window.innerWidth;
+      trailCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeTrail);
+    resizeTrail();
+
+    document.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      if (now - lastTrailTime < 60) return; // throttle
+      lastTrailTime = now;
+
+      for (let i = 0; i < 2; i++) {
+        trailParticles.push({
+          x: e.clientX + (Math.random() - .5) * 10,
+          y: e.clientY + (Math.random() - .5) * 10,
+          life: 1,
+          vx: (Math.random() - .5) * 1.2,
+          vy: (Math.random() - .5) * 1.2 - .6,
+          size: Math.random() * 14 + 10,
+          emoji: TRAIL_EMOJIS[Math.floor(Math.random() * TRAIL_EMOJIS.length)]
+        });
+      }
+    });
+
+    function animateTrail() {
+      tCtx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
+      for (let i = trailParticles.length - 1; i >= 0; i--) {
+        const p = trailParticles[i];
+        p.life -= 0.035;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.02; // subtle gravity
+        if (p.life <= 0) { trailParticles.splice(i, 1); continue; }
+        tCtx.globalAlpha = p.life * 0.75;
+        const sz = p.size * (0.5 + p.life * 0.5);
+        tCtx.font = `${sz}px serif`;
+        tCtx.fillText(p.emoji, p.x - sz / 2, p.y + sz / 2);
+      }
+      tCtx.globalAlpha = 1;
+      requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+  });
+</script>
+</body>
+</html>
